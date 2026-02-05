@@ -1,0 +1,200 @@
+@prefix : <http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/> .
+
+<http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto#parceiroDe
+:parceiroDe rdf:type owl:ObjectProperty ,
+                     owl:SymmetricProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/amigoDe
+:amigoDe rdf:type owl:ObjectProperty ,
+                  owl:SymmetricProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/aprende
+:aprende rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/estudaEm
+:estudaEm rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/fluenteEm
+:fluenteEm rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/frequenta
+:frequenta rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/leciona
+:leciona rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/oriundoDe
+:oriundoDe rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto#dificuldadeEm
+:dificuldadeEm rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto#facilidadeEm
+:facilidadeEm rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/lecionadoEm
+:lecionadoEm rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/temHorario
+:temHorario rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/temIdade
+:temIdade rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto#País
+:País rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Cidade
+:Cidade rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Curso
+:Curso rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Instituicao
+:Instituicao rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Lingua
+:Lingua rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Pessoa
+:Pessoa rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto#Alemanha
+:Alemanha rdf:type owl:NamedIndividual ,
+                   :País .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto#CursoBiotecnologia
+:CursoBiotecnologia rdf:type owl:NamedIndividual ,
+                             :Curso .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto#Hanna
+:Hanna rdf:type owl:NamedIndividual ,
+                :Pessoa ;
+       :parceiroDe :Eduardo ;
+       :aprende :Portugues ;
+       :fluenteEm :Alemao ;
+       :frequenta :CursoBiotecnologia ;
+       :oriundoDe :Alemanha .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Alemao
+:Alemao rdf:type owl:NamedIndividual ,
+                 :Lingua .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Ana
+:Ana rdf:type owl:NamedIndividual ,
+              :Pessoa ;
+     :amigoDe :Carlos ;
+     :frequenta :CursoAlemao .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Carlos
+:Carlos rdf:type owl:NamedIndividual ,
+                 :Pessoa ;
+        :frequenta :CursoAlemao .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/CursoAlemao
+:CursoAlemao rdf:type owl:NamedIndividual ,
+                      :Curso ;
+             :lecionadoEm "Centro de linguas" ;
+             :temHorario "sexta-feira" .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Eduardo
+:Eduardo rdf:type owl:NamedIndividual ,
+                  :Pessoa ;
+         :amigoDe :Ana ,
+                  :Carlos ;
+         :aprende :Alemao ;
+         :estudaEm :Universidade_do_Minho ;
+         :fluenteEm :Espanhol ,
+                    :Ingles ,
+                    :Portugues ;
+         :frequenta :CursoAlemao ;
+         :oriundoDe :Porto ;
+         :dificuldadeEm "oralidade" ;
+         :facilidadeEm "aprender línguas estrangeiras" ;
+         :temIdade "21" .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Espanhol
+:Espanhol rdf:type owl:NamedIndividual ,
+                   :Lingua .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Helmut_Ratz
+:Helmut_Ratz rdf:type owl:NamedIndividual ,
+                      :Pessoa ;
+             :fluenteEm :Alemao ;
+             :leciona :CursoAlemao ;
+             :oriundoDe :Alemanha .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Ingles
+:Ingles rdf:type owl:NamedIndividual ,
+                 :Lingua .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Porto
+:Porto rdf:type owl:NamedIndividual ,
+                :Cidade .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Portugues
+:Portugues rdf:type owl:NamedIndividual ,
+                    :Lingua .
+
+
+###  http://www.semanticweb.org/duartearaujo/ontologies/2026/1/manifesto/Universidade_do_Minho
+:Universidade_do_Minho rdf:type owl:NamedIndividual ,
+                                :Instituicao .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
