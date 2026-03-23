@@ -1,0 +1,23 @@
+# Número total de doenças
+PREFIX : <http://www.example.org/disease-ontology#>
+select (COUNT(?d) as ?totalD) where {
+    ?d a :Disease .
+}
+
+# Doenças associadas ao sintoma yellowish skin
+PREFIX : <http://www.example.org/disease-ontology#>
+select ?d where {
+    ?d :hasSymptom :yellowish_skin.
+} 
+
+# Doenças associadas ao tratamento exercício
+PREFIX : <http://www.example.org/disease-ontology#>
+select ?d where {
+    ?d :hasTreatment :exercise.
+} 
+
+# Lista ordenada do nome dos doentes
+PREFIX : <http://www.example.org/disease-ontology#>
+select ?doente where {
+    ?doente a :Patient.
+} order by ?doente
