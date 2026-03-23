@@ -1,0 +1,550 @@
+@prefix : <http://www.example.org/disease-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+
+:Ontology a owl:Ontology .
+
+# Classes
+:Disease a owl:Class .
+:Symptom a owl:Class .
+:Treatment a owl:Class .
+:Patient a owl:Class .
+
+# Properties
+:hasSymptom a owl:ObjectProperty ;
+    rdfs:domain :Disease ;
+    rdfs:range :Symptom .
+
+:hasTreatment a owl:ObjectProperty ;
+    rdfs:domain :Disease ;
+    rdfs:range :Treatment .
+
+:exhibitsSymptom a owl:ObjectProperty ;
+    rdfs:domain :Patient ;
+    rdfs:range :Symptom .
+
+:hasDisease a owl:ObjectProperty ;
+    rdfs:domain :Patient ;
+    rdfs:range :Disease .
+
+:receivesTreatment a owl:ObjectProperty ;
+    rdfs:domain :Patient ;
+    rdfs:range :Treatment .
+
+# Disease instances
+:Flu a :Disease ;
+    :hasSymptom :Fever, :Cough, :SoreThroat ;
+    :hasTreatment :Rest, :Hydration, :AntiviralDrugs .
+
+:Diabetes a :Disease ;
+    :hasSymptom :IncreasedThirst, :FrequentUrination, :Fatigue ;
+    :hasTreatment :InsulinTherapy, :DietModification, :Exercise .
+
+# Symptom instances
+:Fever a :Symptom .
+:Cough a :Symptom .
+:SoreThroat a :Symptom .
+:IncreasedThirst a :Symptom .
+:FrequentUrination a :Symptom .
+:Fatigue a :Symptom .
+
+# Treatment instances
+:Rest a :Treatment .
+:Hydration a :Treatment .
+:AntiviralDrugs a :Treatment .
+:InsulinTherapy a :Treatment .
+:DietModification a :Treatment .
+:Exercise a :Treatment .
+
+
+# Patient instances
+:Patient1 a :Patient ;
+    :name "Paul Harrods";
+    :exhibitsSymptom :Fever ;
+    :exhibitsSymptom :Cough ;
+    :exhibitsSymptom :SoreThroat .
+
+:Patient2 a :Patient ;
+    :name "Ana Montana";
+    :exhibitsSymptom :IncreasedThirst ;
+    :exhibitsSymptom :FrequentUrination ;
+    :exhibitsSymptom :Fatigue .
+
+
+
+:description a owl:DatatypeProperty ;
+    rdfs:domain :Disease ;
+    rdfs:range xsd:string .
+
+
+:Fungalinfection a :Disease ;
+    :description "" ;
+    :hasSymptom :nodal_skin_eruptions , :dischromic_patches , :skin_rash , :itching .
+
+
+:Allergy a :Disease ;
+    :description "An allergy is an immune system response to a foreign substance that's not typically harmful to your body.They can include certain foods, pollen, or pet dander. Your immune system's job is to keep you healthy by fighting harmful pathogens." ;
+    :hasSymptom :chills , :watering_from_eyes , :shivering , :skin_rash , :continuous_sneezing , :nodal_skin_eruptions , :dischromic_patches , :itching .
+
+
+:GERD a :Disease ;
+    :description "Gastroesophageal reflux disease, or GERD, is a digestive disorder that affects the lower esophageal sphincter (LES), the ring of muscle between the esophagus and stomach. Many people, including pregnant women, suffer from heartburn or acid indigestion caused by GERD." ;
+    :hasSymptom :cough , :chest_pain , :acidity , :chills , :watering_from_eyes , :vomiting , :shivering , :skin_rash , :continuous_sneezing , :nodal_skin_eruptions , :dischromic_patches , :ulcers_on_tongue , :stomach_pain , :itching .
+
+
+:Chroniccholestasis a :Disease ;
+    :description "Gastroesophageal reflux disease, or GERD, is a digestive disorder that affects the lower esophageal sphincter (LES), the ring of muscle between the esophagus and stomach. Many people, including pregnant women, suffer from heartburn or acid indigestion caused by GERD." ;
+    :hasSymptom :chest_pain , :loss_of_appetite , :shivering , :itching , :cough , :abdominal_pain , :acidity , :chills , :yellowish_skin , :ulcers_on_tongue , :continuous_sneezing , :stomach_pain , :vomiting , :watering_from_eyes , :nausea , :nodal_skin_eruptions , :yellowing_of_eyes , :skin_rash , :dischromic_patches .
+
+
+:DrugReaction a :Disease ;
+    :description "Gastroesophageal reflux disease, or GERD, is a digestive disorder that affects the lower esophageal sphincter (LES), the ring of muscle between the esophagus and stomach. Many people, including pregnant women, suffer from heartburn or acid indigestion caused by GERD." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :itching , :cough , :abdominal_pain , :acidity , :chills , :yellowish_skin , :ulcers_on_tongue , :continuous_sneezing , :stomach_pain , :vomiting , :watering_from_eyes , :nausea , :nodal_skin_eruptions , :yellowing_of_eyes , :skin_rash , :dischromic_patches , :spotting_urination .
+
+
+:Pepticulcerdiseae a :Disease ;
+    :description "Gastroesophageal reflux disease, or GERD, is a digestive disorder that affects the lower esophageal sphincter (LES), the ring of muscle between the esophagus and stomach. Many people, including pregnant women, suffer from heartburn or acid indigestion caused by GERD." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :itching , :cough , :abdominal_pain , :acidity , :chills , :yellowish_skin , :ulcers_on_tongue , :continuous_sneezing , :stomach_pain , :vomiting , :watering_from_eyes , :nausea , :nodal_skin_eruptions , :yellowing_of_eyes , :passage_of_gases , :internal_itching , :skin_rash , :dischromic_patches , :spotting_urination .
+
+
+:AIDS a :Disease ;
+    :description "Acquired immunodeficiency syndrome (AIDS) is a chronic, potentially life-threatening condition caused by the human immunodeficiency virus (HIV). By damaging your immune system, HIV interferes with your body's ability to fight infection and disease." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :extra_marital_contacts , :itching , :cough , :abdominal_pain , :high_fever , :acidity , :chills , :patches_in_throat , :yellowish_skin , :ulcers_on_tongue , :continuous_sneezing , :stomach_pain , :vomiting , :watering_from_eyes , :nausea , :nodal_skin_eruptions , :yellowing_of_eyes , :muscle_wasting , :passage_of_gases , :internal_itching , :skin_rash , :dischromic_patches , :spotting_urination .
+
+
+:Diabetes a :Disease ;
+    :description "Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high. Blood glucose is your main source of energy and comes from the food you eat. Insulin, a hormone made by the pancreas, helps glucose from food get into your cells to be used for energy." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :extra_marital_contacts , :restlessness , :obesity , :itching , :cough , :lethargy , :abdominal_pain , :high_fever , :acidity , :chills , :patches_in_throat , :yellowish_skin , :ulcers_on_tongue , :continuous_sneezing , :increased_appetite , :stomach_pain , :vomiting , :watering_from_eyes , :polyuria , :nausea , :nodal_skin_eruptions , :excessive_hunger , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :weight_loss , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :dischromic_patches , :fatigue , :spotting_urination .
+
+
+:Gastroenteritis a :Disease ;
+    :description "Gastroenteritis is an inflammation of the digestive tract, particularly the stomach, and large and small intestines. Viral and bacterial gastroenteritis are intestinal infections associated with symptoms of diarrhea , abdominal cramps, nausea , and vomiting ." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :itching , :cough , :lethargy , :abdominal_pain , :high_fever , :acidity , :chills , :patches_in_throat , :yellowish_skin , :ulcers_on_tongue , :continuous_sneezing , :increased_appetite , :stomach_pain , :vomiting , :watering_from_eyes , :polyuria , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :weight_loss , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :dischromic_patches , :fatigue , :spotting_urination .
+
+
+:BronchialAsthma a :Disease ;
+    :description "Gastroenteritis is an inflammation of the digestive tract, particularly the stomach, and large and small intestines. Viral and bacterial gastroenteritis are intestinal infections associated with symptoms of diarrhea , abdominal cramps, nausea , and vomiting ." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :high_fever , :acidity , :chills , :patches_in_throat , :yellowish_skin , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :increased_appetite , :stomach_pain , :vomiting , :watering_from_eyes , :polyuria , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :weight_loss , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :dischromic_patches , :fatigue , :spotting_urination .
+
+
+:Hypertension a :Disease ;
+    :description "Hypertension (HTN or HT), also known as high blood pressure (HBP), is a long-term medical condition in which the blood pressure in the arteries is persistently elevated. High blood pressure typically does not cause symptoms." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :high_fever , :acidity , :chills , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :increased_appetite , :stomach_pain , :vomiting , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :lack_of_concentration , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :weight_loss , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:Migraine a :Disease ;
+    :description "A migraine can cause severe throbbing pain or a pulsing sensation, usually on one side of the head. It's often accompanied by nausea, vomiting, and extreme sensitivity to light and sound. Migraine attacks can last for hours to days, and the pain can be so severe that it interferes with your daily activities." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :high_fever , :acidity , :chills , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :weight_loss , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:Cervicalspondylosis a :Disease ;
+    :description "A migraine can cause severe throbbing pain or a pulsing sensation, usually on one side of the head. It's often accompanied by nausea, vomiting, and extreme sensitivity to light and sound. Migraine attacks can last for hours to days, and the pain can be so severe that it interferes with your daily activities." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :back_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :high_fever , :acidity , :chills , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :weakness_in_limbs , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :weight_loss , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:Paralysis_brainhemorrhage a :Disease ;
+    :description "A migraine can cause severe throbbing pain or a pulsing sensation, usually on one side of the head. It's often accompanied by nausea, vomiting, and extreme sensitivity to light and sound. Migraine attacks can last for hours to days, and the pain can be so severe that it interferes with your daily activities." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :back_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :acidity , :chills , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :weakness_in_limbs , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :weight_loss , :altered_sensorium , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:Jaundice a :Disease ;
+    :description "Yellow staining of the skin and sclerae (the whites of the eyes) by abnormally high blood levels of the bile pigment bilirubin. The yellowing extends to other tissues and body fluids. Jaundice was once called the ''morbus regius'' (the regal disease) in the belief that only the touch of a king could cure it" ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :back_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :acidity , :chills , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :weight_loss , :altered_sensorium , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:Malaria a :Disease ;
+    :description "An infectious disease caused by protozoan parasites from the Plasmodium family that can be transmitted by the bite of the Anopheles mosquito or by a contaminated needle or transfusion. Falciparum malaria is the most deadly type." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :back_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :sweating , :acidity , :chills , :muscle_pain , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :weight_loss , :altered_sensorium , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:Chickenpox a :Disease ;
+    :description "An infectious disease caused by protozoan parasites from the Plasmodium family that can be transmitted by the bite of the Anopheles mosquito or by a contaminated needle or transfusion. Falciparum malaria is the most deadly type." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :back_pain , :mild_fever , :swelled_lymph_nodes , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :sweating , :acidity , :chills , :muscle_pain , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :red_spots_over_body , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :malaise , :weight_loss , :altered_sensorium , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:Dengue a :Disease ;
+    :description "an acute infectious disease caused by a flavivirus (species Dengue virus of the genus Flavivirus), transmitted by aedes mosquitoes, and characterized by headache, severe joint pain, and a rash. — called also breakbone fever, dengue fever." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :restlessness , :obesity , :back_pain , :mild_fever , :swelled_lymph_nodes , :joint_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :sweating , :acidity , :chills , :muscle_pain , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :red_spots_over_body , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :malaise , :weight_loss , :altered_sensorium , :pain_behind_the_eyes , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:Typhoid a :Disease ;
+    :description "An acute illness characterized by fever caused by infection with the bacterium Salmonella typhi. Typhoid fever has an insidious onset, with fever, headache, constipation, malaise, chills, and muscle pain. Diarrhea is uncommon, and vomiting is not usually severe." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :constipation , :belly_pain , :restlessness , :obesity , :back_pain , :mild_fever , :swelled_lymph_nodes , :joint_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :sweating , :acidity , :chills , :muscle_pain , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :red_spots_over_body , :toxic_look__typhos , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :malaise , :weight_loss , :altered_sensorium , :pain_behind_the_eyes , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:hepatitisA a :Disease ;
+    :description "An acute illness characterized by fever caused by infection with the bacterium Salmonella typhi. Typhoid fever has an insidious onset, with fever, headache, constipation, malaise, chills, and muscle pain. Diarrhea is uncommon, and vomiting is not usually severe." ;
+    :hasSymptom :chest_pain , :burning_micturition , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :constipation , :belly_pain , :restlessness , :obesity , :back_pain , :mild_fever , :swelled_lymph_nodes , :joint_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :sweating , :acidity , :chills , :muscle_pain , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :red_spots_over_body , :toxic_look__typhos , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :malaise , :weight_loss , :altered_sensorium , :pain_behind_the_eyes , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :fatigue , :spotting_urination .
+
+
+:HepatitisB a :Disease ;
+    :description "An acute illness characterized by fever caused by infection with the bacterium Salmonella typhi. Typhoid fever has an insidious onset, with fever, headache, constipation, malaise, chills, and muscle pain. Diarrhea is uncommon, and vomiting is not usually severe." ;
+    :hasSymptom :chest_pain , :burning_micturition , :receiving_blood_transfusion , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :constipation , :receiving_unsterile_injections , :belly_pain , :restlessness , :obesity , :back_pain , :mild_fever , :swelled_lymph_nodes , :joint_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :sweating , :acidity , :chills , :muscle_pain , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :red_spots_over_body , :toxic_look__typhos , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :malaise , :weight_loss , :altered_sensorium , :pain_behind_the_eyes , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :yellow_urine , :fatigue , :spotting_urination .
+
+
+:HepatitisC a :Disease ;
+    :description "An acute illness characterized by fever caused by infection with the bacterium Salmonella typhi. Typhoid fever has an insidious onset, with fever, headache, constipation, malaise, chills, and muscle pain. Diarrhea is uncommon, and vomiting is not usually severe." ;
+    :hasSymptom :chest_pain , :burning_micturition , :receiving_blood_transfusion , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :constipation , :receiving_unsterile_injections , :belly_pain , :restlessness , :obesity , :back_pain , :mild_fever , :swelled_lymph_nodes , :joint_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :sweating , :acidity , :chills , :muscle_pain , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :red_spots_over_body , :toxic_look__typhos , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :malaise , :weight_loss , :altered_sensorium , :pain_behind_the_eyes , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :yellow_urine , :fatigue , :spotting_urination .
+
+
+:HepatitisD a :Disease ;
+    :description "An acute illness characterized by fever caused by infection with the bacterium Salmonella typhi. Typhoid fever has an insidious onset, with fever, headache, constipation, malaise, chills, and muscle pain. Diarrhea is uncommon, and vomiting is not usually severe." ;
+    :hasSymptom :chest_pain , :burning_micturition , :receiving_blood_transfusion , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :constipation , :receiving_unsterile_injections , :belly_pain , :restlessness , :obesity , :back_pain , :mild_fever , :swelled_lymph_nodes , :joint_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :sweating , :acidity , :chills , :muscle_pain , :patches_in_throat , :yellowish_skin , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :red_spots_over_body , :toxic_look__typhos , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :malaise , :weight_loss , :altered_sensorium , :pain_behind_the_eyes , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :yellow_urine , :fatigue , :spotting_urination .
+
+
+:HepatitisE a :Disease ;
+    :description "An acute illness characterized by fever caused by infection with the bacterium Salmonella typhi. Typhoid fever has an insidious onset, with fever, headache, constipation, malaise, chills, and muscle pain. Diarrhea is uncommon, and vomiting is not usually severe." ;
+    :hasSymptom :chest_pain , :burning_micturition , :receiving_blood_transfusion , :loss_of_appetite , :shivering , :irritability , :extra_marital_contacts , :sunken_eyes , :constipation , :receiving_unsterile_injections , :belly_pain , :restlessness , :obesity , :back_pain , :mild_fever , :swelled_lymph_nodes , :joint_pain , :family_history , :itching , :cough , :lethargy , :abdominal_pain , :weakness_of_one_body_side , :high_fever , :sweating , :acidity , :chills , :muscle_pain , :patches_in_throat , :yellowish_skin , :coma , :stomach_bleeding , :headache , :ulcers_on_tongue , :continuous_sneezing , :breathlessness , :depression , :increased_appetite , :stomach_pain , :vomiting , :indigestion , :dark_urine , :weakness_in_limbs , :red_spots_over_body , :toxic_look__typhos , :watering_from_eyes , :polyuria , :loss_of_balance , :nausea , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :mucoid_sputum , :neck_pain , :lack_of_concentration , :visual_disturbances , :yellowing_of_eyes , :muscle_wasting , :irregular_sugar_level , :malaise , :weight_loss , :altered_sensorium , :pain_behind_the_eyes , :blurred_and_distorted_vision , :passage_of_gases , :internal_itching , :skin_rash , :stiff_neck , :dischromic_patches , :dizziness , :yellow_urine , :fatigue , :spotting_urination .
+
+
+:Alcoholichepatitis a :Disease ;
+    :description "An acute illness characterized by fever caused by infection with the bacterium Salmonella typhi. Typhoid fever has an insidious onset, with fever, headache, constipation, malaise, chills, and muscle pain. Diarrhea is uncommon, and vomiting is not usually severe." ;
+    :hasSymptom :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :red_spots_over_body , :polyuria , :loss_of_balance , :visual_disturbances , :irregular_sugar_level , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :history_of_alcohol_consumption , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :family_history , :lethargy , :high_fever , :acidity , :patches_in_throat , :stomach_pain , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :spotting_urination , :receiving_blood_transfusion , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :fatigue , :fluid_overload .
+
+
+:Tuberculosis a :Disease ;
+    :description "Tuberculosis (TB) is an infectious disease usually caused by Mycobacterium tuberculosis (MTB) bacteria. Tuberculosis generally affects the lungs, but can also affect other parts of the body. Most infections show no symptoms, in which case it is known as latent tuberculosis." ;
+    :hasSymptom :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :red_spots_over_body , :polyuria , :loss_of_balance , :visual_disturbances , :irregular_sugar_level , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :history_of_alcohol_consumption , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :blood_in_sputum , :family_history , :lethargy , :high_fever , :acidity , :patches_in_throat , :stomach_pain , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :spotting_urination , :receiving_blood_transfusion , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :fatigue , :fluid_overload .
+
+
+:CommonCold a :Disease ;
+    :description "Tuberculosis (TB) is an infectious disease usually caused by Mycobacterium tuberculosis (MTB) bacteria. Tuberculosis generally affects the lungs, but can also affect other parts of the body. Most infections show no symptoms, in which case it is known as latent tuberculosis." ;
+    :hasSymptom :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :history_of_alcohol_consumption , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :blood_in_sputum , :family_history , :lethargy , :sinus_pressure , :high_fever , :acidity , :patches_in_throat , :stomach_pain , :runny_nose , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :spotting_urination , :receiving_blood_transfusion , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Pneumonia a :Disease ;
+    :description "Pneumonia is an infection in one or both lungs. Bacteria, viruses, and fungi cause it. The infection causes inflammation in the air sacs in your lungs, which are called alveoli. The alveoli fill with fluid or pus, making it difficult to breathe." ;
+    :hasSymptom :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :fast_heart_rate , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :history_of_alcohol_consumption , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :blood_in_sputum , :family_history , :lethargy , :sinus_pressure , :high_fever , :acidity , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :spotting_urination , :receiving_blood_transfusion , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Dimorphichemmorhoids_piles a :Disease ;
+    :description "Pneumonia is an infection in one or both lungs. Bacteria, viruses, and fungi cause it. The infection causes inflammation in the air sacs in your lungs, which are called alveoli. The alveoli fill with fluid or pus, making it difficult to breathe." ;
+    :hasSymptom :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :fast_heart_rate , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :history_of_alcohol_consumption , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :blood_in_sputum , :family_history , :lethargy , :sinus_pressure , :high_fever , :acidity , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :spotting_urination , :receiving_blood_transfusion , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Heartattack a :Disease ;
+    :description "Pneumonia is an infection in one or both lungs. Bacteria, viruses, and fungi cause it. The infection causes inflammation in the air sacs in your lungs, which are called alveoli. The alveoli fill with fluid or pus, making it difficult to breathe." ;
+    :hasSymptom :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :fast_heart_rate , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :history_of_alcohol_consumption , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :blood_in_sputum , :family_history , :lethargy , :sinus_pressure , :high_fever , :acidity , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :spotting_urination , :receiving_blood_transfusion , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Varicoseveins a :Disease ;
+    :description "Pneumonia is an infection in one or both lungs. Bacteria, viruses, and fungi cause it. The infection causes inflammation in the air sacs in your lungs, which are called alveoli. The alveoli fill with fluid or pus, making it difficult to breathe." ;
+    :hasSymptom :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :history_of_alcohol_consumption , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bruising , :swollen_blood_vessels , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :blood_in_sputum , :family_history , :lethargy , :sinus_pressure , :high_fever , :acidity , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :spotting_urination , :receiving_blood_transfusion , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Hypothyroidism a :Disease ;
+    :description "Hypothyroidism, also called underactive thyroid or low thyroid, is a disorder of the endocrine system in which the thyroid gland does not produce enough thyroid hormone." ;
+    :hasSymptom :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bruising , :swollen_extremeties , :swollen_blood_vessels , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :blood_in_sputum , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :abnormal_menstruation , :spotting_urination , :receiving_blood_transfusion , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Hyperthyroidism a :Disease ;
+    :description "Hyperthyroidism (overactive thyroid) occurs when your thyroid gland produces too much of the hormone thyroxine. Hyperthyroidism can accelerate your body's metabolism, causing unintentional weight loss and a rapid or irregular heartbeat." ;
+    :hasSymptom :muscle_weakness , :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bruising , :swollen_extremeties , :swollen_blood_vessels , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :blood_in_sputum , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :abnormal_menstruation , :spotting_urination , :receiving_blood_transfusion , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Hypoglycemia a :Disease ;
+    :description " Hypoglycemia is a condition in which your blood sugar (glucose) level is lower than normal. Glucose is your body's main energy source. Hypoglycemia is often related to diabetes treatment. But other drugs and a variety of conditions — many rare — can cause low blood sugar in people who don't have diabetes." ;
+    :hasSymptom :muscle_weakness , :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :slurred_speech , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bruising , :swollen_extremeties , :swollen_blood_vessels , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :palpitations , :blood_in_sputum , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :abnormal_menstruation , :spotting_urination , :receiving_blood_transfusion , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :breathlessness , :dizziness , :anxiety , :vomiting , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Osteoarthristis a :Disease ;
+    :description "Osteoarthritis is the most common form of arthritis, affecting millions of people worldwide. It occurs when the protective cartilage that cushions the ends of your bones wears down over time." ;
+    :hasSymptom :muscle_weakness , :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :knee_pain , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :slurred_speech , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bruising , :swollen_extremeties , :swollen_blood_vessels , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :palpitations , :blood_in_sputum , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :hip_joint_pain , :abnormal_menstruation , :spotting_urination , :receiving_blood_transfusion , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :painful_walking , :breathlessness , :dizziness , :anxiety , :vomiting , :swelling_joints , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Arthritis a :Disease ;
+    :description "Arthritis is the swelling and tenderness of one or more of your joints. The main symptoms of arthritis are joint pain and stiffness, which typically worsen with age. The most common types of arthritis are osteoarthritis and rheumatoid arthritis." ;
+    :hasSymptom :muscle_weakness , :loss_of_appetite , :irritability , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :knee_pain , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :slurred_speech , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bruising , :swollen_extremeties , :swollen_blood_vessels , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :palpitations , :blood_in_sputum , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :movement_stiffness , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :hip_joint_pain , :abnormal_menstruation , :spotting_urination , :receiving_blood_transfusion , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :painful_walking , :breathlessness , :dizziness , :anxiety , :vomiting , :swelling_joints , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:_vertigoParoymsalPositionalVertigo a :Disease ;
+    :description "Arthritis is the swelling and tenderness of one or more of your joints. The main symptoms of arthritis are joint pain and stiffness, which typically worsen with age. The most common types of arthritis are osteoarthritis and rheumatoid arthritis." ;
+    :hasSymptom :muscle_weakness , :loss_of_appetite , :irritability , :spinning_movements , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :unsteadiness , :knee_pain , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :slurred_speech , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bruising , :swollen_extremeties , :swollen_blood_vessels , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :palpitations , :blood_in_sputum , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :movement_stiffness , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :hip_joint_pain , :abnormal_menstruation , :spotting_urination , :receiving_blood_transfusion , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :painful_walking , :breathlessness , :dizziness , :anxiety , :vomiting , :swelling_joints , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Acne a :Disease ;
+    :description "Acne vulgaris is the formation of comedones, papules, pustules, nodules, and/or cysts as a result of obstruction and inflammation of pilosebaceous units (hair follicles and their accompanying sebaceous gland). Acne develops on the face and upper trunk. It most often affects adolescents." ;
+    :hasSymptom :muscle_weakness , :loss_of_appetite , :irritability , :spinning_movements , :blackheads , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :scurring , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :unsteadiness , :knee_pain , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :slurred_speech , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bruising , :swollen_extremeties , :swollen_blood_vessels , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :palpitations , :blood_in_sputum , :pus_filled_pimples , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :movement_stiffness , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :hip_joint_pain , :abnormal_menstruation , :spotting_urination , :receiving_blood_transfusion , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :painful_walking , :breathlessness , :dizziness , :anxiety , :vomiting , :swelling_joints , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Urinarytractinfection a :Disease ;
+    :description "Acne vulgaris is the formation of comedones, papules, pustules, nodules, and/or cysts as a result of obstruction and inflammation of pilosebaceous units (hair follicles and their accompanying sebaceous gland). Acne develops on the face and upper trunk. It most often affects adolescents." ;
+    :hasSymptom :muscle_weakness , :loss_of_appetite , :irritability , :spinning_movements , :blackheads , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :scurring , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :continuous_feel_of_urine , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :unsteadiness , :knee_pain , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :slurred_speech , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bladder_discomfort , :bruising , :swollen_extremeties , :swollen_blood_vessels , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :palpitations , :blood_in_sputum , :pus_filled_pimples , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :movement_stiffness , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :hip_joint_pain , :abnormal_menstruation , :spotting_urination , :receiving_blood_transfusion , :foul_smell_ofurine , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :painful_walking , :breathlessness , :dizziness , :anxiety , :vomiting , :swelling_joints , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Psoriasis a :Disease ;
+    :description "Psoriasis is a common skin disorder that forms thick, red, bumpy patches covered with silvery scales. They can pop up anywhere, but most appear on the scalp, elbows, knees, and lower back. Psoriasis can't be passed from person to person. It does sometimes happen in members of the same family." ;
+    :hasSymptom :muscle_weakness , :loss_of_appetite , :irritability , :spinning_movements , :blackheads , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :scurring , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :skin_peeling , :continuous_feel_of_urine , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :unsteadiness , :knee_pain , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :slurred_speech , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bladder_discomfort , :bruising , :swollen_extremeties , :swollen_blood_vessels , :silver_like_dusting , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :palpitations , :blood_in_sputum , :pus_filled_pimples , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :movement_stiffness , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :hip_joint_pain , :inflammatory_nails , :abnormal_menstruation , :small_dents_in_nails , :spotting_urination , :receiving_blood_transfusion , :foul_smell_ofurine , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :painful_walking , :breathlessness , :dizziness , :anxiety , :vomiting , :swelling_joints , :neck_pain , :lack_of_concentration , :altered_sensorium , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:Impetigo a :Disease ;
+    :description "Impetigo (im-puh-TIE-go) is a common and highly contagious skin infection that mainly affects infants and children. Impetigo usually appears as red sores on the face, especially around a child's nose and mouth, and on hands and feet. The sores burst and develop honey-colored crusts." ;
+    :hasSymptom :muscle_weakness , :blister , :loss_of_appetite , :irritability , :spinning_movements , :blackheads , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :scurring , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :skin_peeling , :continuous_feel_of_urine , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :unsteadiness , :knee_pain , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :yellow_crust_ooze , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :slurred_speech , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bladder_discomfort , :bruising , :swollen_extremeties , :swollen_blood_vessels , :silver_like_dusting , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :palpitations , :blood_in_sputum , :pus_filled_pimples , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :movement_stiffness , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :hip_joint_pain , :inflammatory_nails , :abnormal_menstruation , :small_dents_in_nails , :spotting_urination , :receiving_blood_transfusion , :foul_smell_ofurine , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :painful_walking , :breathlessness , :dizziness , :anxiety , :vomiting , :swelling_joints , :neck_pain , :lack_of_concentration , :altered_sensorium , :red_sore_around_nose , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+: a :Disease ;
+    :description "" ;
+    :hasSymptom :muscle_weakness , :blister , :loss_of_appetite , :irritability , :spinning_movements , :blackheads , :swelled_lymph_nodes , :weakness_of_one_body_side , :cough , :sweating , :muscle_pain , :headache , :ulcers_on_tongue , :scurring , :congestion , :swollen_legs , :red_spots_over_body , :polyuria , :loss_of_balance , :skin_peeling , :continuous_feel_of_urine , :loss_of_smell , :visual_disturbances , :irregular_sugar_level , :puffy_face_and_eyes , :pain_behind_the_eyes , :passage_of_gases , :skin_rash , :dischromic_patches , :prominent_veins_on_calf , :cramps , :fast_heart_rate , :unsteadiness , :knee_pain , :shivering , :belly_pain , :joint_pain , :stomach_bleeding , :yellowish_skin , :yellow_crust_ooze , :increased_appetite , :weight_gain , :history_of_alcohol_consumption , :slurred_speech , :irritation_in_anus , :bloody_stool , :toxic_look__typhos , :watering_from_eyes , :nausea , :mucoid_sputum , :pain_during_bowel_movements , :yellowing_of_eyes , :muscle_wasting , :distention_of_abdomen , :bladder_discomfort , :bruising , :swollen_extremeties , :swollen_blood_vessels , :silver_like_dusting , :yellow_urine , :weakness_in_limbs , :chest_pain , :burning_micturition , :palpitations , :blood_in_sputum , :pus_filled_pimples , :family_history , :brittle_nails , :lethargy , :sinus_pressure , :high_fever , :acidity , :enlarged_thyroid , :patches_in_throat , :stomach_pain , :runny_nose , :rusty_sputum , :phlegm , :indigestion , :dark_urine , :movement_stiffness , :dehydration , :nodal_skin_eruptions , :diarrhoea , :excessive_hunger , :malaise , :weight_loss , :swelling_of_stomach , :blurred_and_distorted_vision , :stiff_neck , :internal_itching , :pain_in_anal_region , :hip_joint_pain , :inflammatory_nails , :abnormal_menstruation , :small_dents_in_nails , :spotting_urination , :receiving_blood_transfusion , :foul_smell_ofurine , :cold_hands_and_feets , :extra_marital_contacts , :sunken_eyes , :receiving_unsterile_injections , :restlessness , :obesity , :back_pain , :mild_fever , :mood_swings , :throat_irritation , :constipation , :itching , :coma , :abdominal_pain , :chills , :continuous_sneezing , :painful_walking , :breathlessness , :dizziness , :anxiety , :vomiting , :swelling_joints , :neck_pain , :lack_of_concentration , :altered_sensorium , :red_sore_around_nose , :depression , :redness_of_eyes , :fatigue , :fluid_overload .
+
+
+:muscle_weakness a :Symptom .
+
+:blister a :Symptom .
+
+:loss_of_appetite a :Symptom .
+
+:irritability a :Symptom .
+
+:spinning_movements a :Symptom .
+
+:blackheads a :Symptom .
+
+:swelled_lymph_nodes a :Symptom .
+
+:weakness_of_one_body_side a :Symptom .
+
+:cough a :Symptom .
+
+:sweating a :Symptom .
+
+:muscle_pain a :Symptom .
+
+:headache a :Symptom .
+
+:ulcers_on_tongue a :Symptom .
+
+:scurring a :Symptom .
+
+:congestion a :Symptom .
+
+:swollen_legs a :Symptom .
+
+:red_spots_over_body a :Symptom .
+
+:polyuria a :Symptom .
+
+:loss_of_balance a :Symptom .
+
+:skin_peeling a :Symptom .
+
+:continuous_feel_of_urine a :Symptom .
+
+:loss_of_smell a :Symptom .
+
+:visual_disturbances a :Symptom .
+
+:irregular_sugar_level a :Symptom .
+
+:puffy_face_and_eyes a :Symptom .
+
+:pain_behind_the_eyes a :Symptom .
+
+:passage_of_gases a :Symptom .
+
+:skin_rash a :Symptom .
+
+:dischromic_patches a :Symptom .
+
+:prominent_veins_on_calf a :Symptom .
+
+:cramps a :Symptom .
+
+:fast_heart_rate a :Symptom .
+
+:unsteadiness a :Symptom .
+
+:knee_pain a :Symptom .
+
+:shivering a :Symptom .
+
+:belly_pain a :Symptom .
+
+:joint_pain a :Symptom .
+
+:stomach_bleeding a :Symptom .
+
+:yellowish_skin a :Symptom .
+
+:yellow_crust_ooze a :Symptom .
+
+:increased_appetite a :Symptom .
+
+:weight_gain a :Symptom .
+
+:history_of_alcohol_consumption a :Symptom .
+
+:slurred_speech a :Symptom .
+
+:irritation_in_anus a :Symptom .
+
+:bloody_stool a :Symptom .
+
+:toxic_look__typhos a :Symptom .
+
+:watering_from_eyes a :Symptom .
+
+:nausea a :Symptom .
+
+:mucoid_sputum a :Symptom .
+
+:pain_during_bowel_movements a :Symptom .
+
+:yellowing_of_eyes a :Symptom .
+
+:muscle_wasting a :Symptom .
+
+:distention_of_abdomen a :Symptom .
+
+:bladder_discomfort a :Symptom .
+
+:bruising a :Symptom .
+
+:swollen_extremeties a :Symptom .
+
+:swollen_blood_vessels a :Symptom .
+
+:silver_like_dusting a :Symptom .
+
+:yellow_urine a :Symptom .
+
+:weakness_in_limbs a :Symptom .
+
+:chest_pain a :Symptom .
+
+:burning_micturition a :Symptom .
+
+:palpitations a :Symptom .
+
+:blood_in_sputum a :Symptom .
+
+:pus_filled_pimples a :Symptom .
+
+:family_history a :Symptom .
+
+:brittle_nails a :Symptom .
+
+:lethargy a :Symptom .
+
+:sinus_pressure a :Symptom .
+
+:high_fever a :Symptom .
+
+:acidity a :Symptom .
+
+:enlarged_thyroid a :Symptom .
+
+:patches_in_throat a :Symptom .
+
+:stomach_pain a :Symptom .
+
+:runny_nose a :Symptom .
+
+:rusty_sputum a :Symptom .
+
+:phlegm a :Symptom .
+
+:indigestion a :Symptom .
+
+:dark_urine a :Symptom .
+
+:movement_stiffness a :Symptom .
+
+:dehydration a :Symptom .
+
+:nodal_skin_eruptions a :Symptom .
+
+:diarrhoea a :Symptom .
+
+:excessive_hunger a :Symptom .
+
+:malaise a :Symptom .
+
+:weight_loss a :Symptom .
+
+:swelling_of_stomach a :Symptom .
+
+:blurred_and_distorted_vision a :Symptom .
+
+:stiff_neck a :Symptom .
+
+:internal_itching a :Symptom .
+
+:pain_in_anal_region a :Symptom .
+
+:hip_joint_pain a :Symptom .
+
+:inflammatory_nails a :Symptom .
+
+:abnormal_menstruation a :Symptom .
+
+:small_dents_in_nails a :Symptom .
+
+:spotting_urination a :Symptom .
+
+:receiving_blood_transfusion a :Symptom .
+
+:foul_smell_ofurine a :Symptom .
+
+:cold_hands_and_feets a :Symptom .
+
+:extra_marital_contacts a :Symptom .
+
+:sunken_eyes a :Symptom .
+
+:receiving_unsterile_injections a :Symptom .
+
+:restlessness a :Symptom .
+
+:obesity a :Symptom .
+
+:back_pain a :Symptom .
+
+:mild_fever a :Symptom .
+
+:mood_swings a :Symptom .
+
+:throat_irritation a :Symptom .
+
+:constipation a :Symptom .
+
+:itching a :Symptom .
+
+:coma a :Symptom .
+
+:abdominal_pain a :Symptom .
+
+:chills a :Symptom .
+
+:continuous_sneezing a :Symptom .
+
+:painful_walking a :Symptom .
+
+:breathlessness a :Symptom .
+
+:dizziness a :Symptom .
+
+:anxiety a :Symptom .
+
+:vomiting a :Symptom .
+
+:swelling_joints a :Symptom .
+
+:neck_pain a :Symptom .
+
+:lack_of_concentration a :Symptom .
+
+:altered_sensorium a :Symptom .
+
+:red_sore_around_nose a :Symptom .
+
+:depression a :Symptom .
+
+:redness_of_eyes a :Symptom .
+
+:fatigue a :Symptom .
+
+:fluid_overload a :Symptom .
